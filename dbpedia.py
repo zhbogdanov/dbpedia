@@ -97,7 +97,8 @@ class Person:
 
         for found_person in self.persons:
             if all(per in found_person["name"] for per in self.name):
-                if dateparser.parse(found_person["birthDate"]) != self.birth_date.get("datetime_date"):
+                if self.birth_date.get("datetime_date") \
+                        and dateparser.parse(found_person["birthDate"]) != self.birth_date.get("datetime_date"):
                     continue
                 if all(bp in found_person["birthPlace"] for bp in self.birth_place):
                     return True
